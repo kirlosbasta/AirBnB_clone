@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 '''unittest module for the base model class'''
+import datetime
 import unittest
 from models.base_model import BaseModel
 
@@ -26,7 +27,8 @@ class TestbaseModel(unittest.TestCase):
         self.assertIn('created_at', str(model_1))
 
     def test_save(self):
-        '''test that save changes the updated_at attribute to the current time'''
+        '''test that save changes the updated_at attribute to the
+        current time'''
         model_1 = BaseModel()
         before = model_1.updated_at
         model_1.save()
@@ -53,6 +55,17 @@ class TestbaseModel(unittest.TestCase):
         model_1 = BaseModel()
         with self.assertRaises(TypeError):
             model_1.to_dict(self.id)
+
+    def test_BaseModel_recreation(self):
+        '''test reacreation of base Model from a dictionary'''
+        model_1 = BaseModel()
+        model_1_dict = model_1.to_dict()
+        model_2 = BaseModel(**model_1_dict)
+        self.assertNotIn('__class__', model_2.__dict__)
+        self.assertIsNot(model_1, model_2)
+        self.assertEqual(model_1.id, model_2.id)
+        self.assertIsInstance(model_2.created_at, datetime.datetime)
+        self.assertIsInstance(model_2.updated_at, datetime.datetime)
 
 
 if __name__ == '__main__':
