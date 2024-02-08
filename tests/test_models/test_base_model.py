@@ -61,6 +61,7 @@ class TestbaseModel(unittest.TestCase):
         model_1 = BaseModel()
         model_1_dict = model_1.to_dict()
         model_2 = BaseModel(**model_1_dict)
+        self.assertIsInstance(model_2, BaseModel)
         self.assertNotIn('__class__', model_2.__dict__)
         self.assertIsNot(model_1, model_2)
         self.assertEqual(model_1.id, model_2.id)
