@@ -72,6 +72,29 @@ Usage: (all <class_name>) or (all)'''
                     list_inist.append(str(obj))
             print(str(list_inist))
 
+    def do_update(self, args):
+        '''Updates an instance based on the class name and id by adding or updating attribute
+Usage: update <class name> <id> <attribute name> "<attribute value>"'''
+        arg_list = args.split()
+        if len(arg_list) == 0:
+            print('** class name missing **')
+        elif arg_list[0] not in self.class_dict:
+            print("** class doesn't exist **")
+        elif len(arg_list) == 1:
+            print("** instance id missing **")
+        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in models.storage.all():
+            print("** no instance found **")
+        elif len(arg_list) == 2:
+            print('** attribute name missing **')
+        elif len(arg_list) == 3:
+            print('** value missing **')
+        else:
+            obj_id = '{}.{}'.format(arg_list[0], arg_list[1])
+            objects_dict = models.storage.all()
+            model = objects_dict[obj_id]
+            model.__dict__[arg_list[2]] = eval(arg_list[3])
+            model.save()
+
     def do_quit(self, args):
         '''Quit command to exit the program'''
         return True
