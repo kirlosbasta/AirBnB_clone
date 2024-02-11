@@ -124,8 +124,9 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
         """Overrite emptyline default to do nothing"""
         pass
 
-    def onecmd(self, line):
+    def default(self, line):
         """Override the default onecmd method to handle dynamic commands"""
+        print(line)
         if line.endswith('.all()'):
             class_name = line[:-6]
             self.do_all(class_name)
@@ -133,7 +134,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
             class_name = line[:-8]
             self.count(class_name)
         else:
-            return super().onecmd(line)
+            return super().default(line)
 
     def count(self, cls):
         '''print the number of inistace of cls'''
