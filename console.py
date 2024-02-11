@@ -121,6 +121,14 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
     def emptyline(self):
         pass
 
+    def onecmd(self, line):
+        """Override the default onecmd method to handle dynamic commands"""
+        if line.endswith('.all()'):
+            class_name = line[:-6]
+            self.do_all(class_name)
+        else:
+            return super().onecmd(line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
