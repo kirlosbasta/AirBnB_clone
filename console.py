@@ -3,12 +3,20 @@
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     '''the console command interpereter class'''
     prompt = '(hbnb) '
-    class_dict = {'BaseModel': BaseModel}
+    class_dict = {
+        "BaseModel": BaseModel, 'User': User, 'City': City, 'State': State,
+        'Amenity': Amenity, 'Place': Place, 'Review': Review}
 
     def do_create(self, args):
         '''create an inistance of the class specified and save it to storage
@@ -34,10 +42,12 @@ Usage: show <class_name> <id>'''
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
             print("** instance id missing **")
-        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in models.storage.all():
+        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in \
+                models.storage.all():
             print("** no instance found **")
         else:
-            inistance = models.storage.all()['{}.{}'.format(arg_list[0], arg_list[1])]
+            inistance = models.storage.all()['{}.{}'.format(arg_list[0],
+                                                            arg_list[1])]
             print(str(inistance))
 
     def do_destroy(self, args):
@@ -50,14 +60,16 @@ Usage: destroy <class_name> <id>'''
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
             print("** instance id missing **")
-        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in models.storage.all():
+        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in \
+                models.storage.all():
             print("** no instance found **")
         else:
             del models.storage.all()['{}.{}'.format(arg_list[0], arg_list[1])]
             models.storage.save()
 
     def do_all(self, args):
-        '''Prints all string representation of all instances based or not on the class name
+        '''Prints all string representation of all instances based or\
+not on the class name
 Usage: (all <class_name>) or (all)'''
         list_inist = []
         arg_list = args.split()
@@ -73,7 +85,8 @@ Usage: (all <class_name>) or (all)'''
             print(str(list_inist))
 
     def do_update(self, args):
-        '''Updates an instance based on the class name and id by adding or updating attribute
+        '''Updates an instance based on the class name and id by adding or \
+updating attribute
 Usage: update <class name> <id> <attribute name> "<attribute value>"'''
         arg_list = args.split()
         if len(arg_list) == 0:
@@ -82,7 +95,8 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
             print("** instance id missing **")
-        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in models.storage.all():
+        elif '{}.{}'.format(arg_list[0], arg_list[1]) not in \
+                models.storage.all():
             print("** no instance found **")
         elif len(arg_list) == 2:
             print('** attribute name missing **')
@@ -92,7 +106,10 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
             obj_id = '{}.{}'.format(arg_list[0], arg_list[1])
             objects_dict = models.storage.all()
             model = objects_dict[obj_id]
-            model.__dict__[arg_list[2]] = eval(arg_list[3])
+            val = arg_list[3]
+            if val.isdigit():
+                val = eval(val)
+            model.__dict__[arg_list[2]] = val
             model.save()
 
     def do_quit(self, args):

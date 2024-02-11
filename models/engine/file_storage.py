@@ -2,6 +2,12 @@
 '''Module contain a class called file_storage'''
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -12,13 +18,14 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
     class_dict = {
-    "BaseModel": BaseModel
-}
+        "BaseModel": BaseModel, 'User': User, 'City': City, 'State': State,
+        'Amenity': Amenity, 'Place': Place, 'Review': Review
+        }
 
     def all(self):
         '''return a dictionary with all the objects of the class'''
         return self.__objects
-    
+
     def new(self, obj):
         '''
         set a new object to the list of objects
@@ -41,6 +48,7 @@ class FileStorage:
                 json_string = f.read()
                 json_obj_dict = json.loads(json_string)
                 for key, obj in json_obj_dict.items():
-                    FileStorage.__objects[key] = self.class_dict[obj['__class__']](**obj)
+                    FileStorage.__objects[key] = \
+                        self.class_dict[obj['__class__']](**obj)
         except Exception:
             pass
