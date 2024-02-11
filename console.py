@@ -116,7 +116,9 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
         '''Quit command to exit the program'''
         return True
 
-    do_EOF = do_quit
+    def do_EOF(self, args):
+        '''Quit command to exit the program'''
+        return True
 
     def emptyline(self):
         """Overrite emptyline default to do nothing"""
