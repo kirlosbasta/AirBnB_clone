@@ -126,7 +126,6 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
 
     def default(self, line):
         """Override the default onecmd method to handle dynamic commands"""
-        print(line)
         if line.endswith('.all()'):
             class_name = line[:-6]
             self.do_all(class_name)
