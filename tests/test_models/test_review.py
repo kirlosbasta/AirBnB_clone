@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''unittest module for the user class'''
+'''unittest module for the Review class'''
 import datetime
 import unittest
 from models.review import Review

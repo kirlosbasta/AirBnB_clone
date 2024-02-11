@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''unittest module for the user class'''
+'''unittest module for the State class'''
 import datetime
 import unittest
 from models.state import State

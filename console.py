@@ -119,6 +119,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
     do_EOF = do_quit
 
     def emptyline(self):
+        """Overrite emptyline default to do nothing"""
         pass
 
     def onecmd(self, line):
@@ -131,7 +132,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
             self.count(class_name)
         else:
             return super().onecmd(line)
-        
+
     def count(self, cls):
         '''print the number of inistace of cls'''
         list_inist = []
