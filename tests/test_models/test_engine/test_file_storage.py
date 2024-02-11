@@ -62,8 +62,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_reload_arg(self):
         '''reload has no arg'''
@@ -93,8 +93,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_Amenity(self):
         '''test that filestorage support Amenity'''
@@ -104,8 +104,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_City(self):
         '''test that filestorage support City'''
@@ -115,8 +115,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_Place(self):
         '''test that filestorage support Place'''
@@ -126,8 +126,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_Review(self):
         '''test that filestorage support Review'''
@@ -137,8 +137,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
     def test_State(self):
         '''test that filestorage support State'''
@@ -148,8 +148,8 @@ class TestFileStorage(unittest.TestCase):
         with open('file.json', 'r', encoding='utf-8') as f:
             json_string = f.read()
             json_dict = json.loads(json_string)
-            self.assertEqual(var.id, json_dict[f'{var.__class__.__name__}.\
-                                               {var.id}']['id'])
+            id_name = f'{var.__class__.__name__}.{var.id}'
+            self.assertEqual(var.id, json_dict[id_name]['id'])
 
 
 if __name__ == '__main__':
