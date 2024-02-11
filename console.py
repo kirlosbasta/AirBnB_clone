@@ -126,8 +126,19 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
         if line.endswith('.all()'):
             class_name = line[:-6]
             self.do_all(class_name)
+        elif line.endswith('.count()'):
+            class_name = line[:-8]
+            self.count(class_name)
         else:
             return super().onecmd(line)
+        
+    def count(self, cls):
+        '''print the number of inistace of cls'''
+        list_inist = []
+        for key, obj in models.storage.all().items():
+            if f'{cls}' in key:
+                list_inist.append(str(obj))
+        print(len(list_inist))
 
 
 if __name__ == '__main__':
