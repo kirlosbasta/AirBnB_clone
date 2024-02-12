@@ -2,6 +2,7 @@
 '''Program that contain the entry point of the command interpreter'''
 import cmd
 import models
+import re
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -126,12 +127,32 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
 
     def default(self, line):
         """Override the default onecmd method to handle dynamic commands"""
-        if line.endswith('.all()'):
-            class_name = line[:-6]
-            self.do_all(class_name)
-        elif line.endswith('.count()'):
-            class_name = line[:-8]
-            self.count(class_name)
+        p = r"(?P<cls>^[a-zA-Z]+)\.(?P<command>[a-zA-Z]+)\((?P<args>.*?)\)"
+        mat = re.search(p, line)
+        if mat:
+            class_name = mat.group('cls')
+            command = mat.group('command')
+            args = mat.group('args')
+            if command == 'all':
+                self.do_all(class_name)
+            elif command == 'count':
+                self.count(class_name)
+            elif command == 'show':
+                quote_pattern = r"[\"\'](?P<arg>.*?)[\"\']"
+                qu = re.search(quote_pattern, args)
+                if qu:
+                    self.do_show(" ".join([class_name, qu.group('arg')]))
+                else:
+                    self.do_show(" ".join([class_name, args]))
+            elif command == 'destroy':
+                quote_pattern = r"[\"\'](?P<arg>.*?)[\"\']"
+                qu = re.search(quote_pattern, args)
+                if qu:
+                    self.do_destroy(" ".join([class_name, qu.group('arg')]))
+                else:
+                    self.do_destroy(" ".join([class_name, args]))
+            else:
+                return super().default(line)
         else:
             return super().default(line)
 
