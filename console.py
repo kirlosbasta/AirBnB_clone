@@ -151,6 +151,10 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"'''
                     self.do_destroy(" ".join([class_name, qu.group('arg')]))
                 else:
                     self.do_destroy(" ".join([class_name, args]))
+            elif command == 'update':
+                arguments = args.split(', ')
+                arguments = [arg.strip('\'\"') for arg in arguments]
+                self.do_update(" ".join([class_name] + arguments))
             else:
                 return super().default(line)
         else:
