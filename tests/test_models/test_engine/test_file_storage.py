@@ -75,7 +75,7 @@ class TestFileStorage(unittest.TestCase):
         if models.storage is not None:
             self.assertIsInstance(models.storage, FileStorage)
 
-    def test_reload_file_exist(self):
+    def test_reload(self):
         '''test reload should convert json file to __objects if file exist'''
         self.assertGreaterEqual(len(models.storage.all()), 0)
 
