@@ -18,7 +18,7 @@ There are sevral build in command that you can use to like:-
 6-update
 To get more information of the command or the syntax use "help command"
 
-examples:-
+examples:-<br>
 $ create User
 6a802e85-072f-476b-a872-a7ebf1807b88
 $ show User 6a802e85-072f-476b-a872-a7ebf1807b88
