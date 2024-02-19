@@ -1,4 +1,4 @@
-<h1>0x00.AirBnB clone - The console<h1\>
+<h1>0x00.AirBnB clone - The console</h1>
 Welcome to the AirBnB clone project!
 This project involves the creation of python packages and command interpreters using cmd module, serializing and deserializing a class, and unit testing.
 
@@ -16,7 +16,7 @@ There are sevral build in command that you can use to like:-
 4-destroy
 5-all
 6-update
-To get more information of the command or the syntax use "help <command>"
+To get more information of the command or the syntax use "help <code><command></code>"
 
 examples:-
 >>> create User
