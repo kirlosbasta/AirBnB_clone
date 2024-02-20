@@ -59,7 +59,6 @@ Locations
 	height: 100%;
 	width: 25%;
 	border-right: 1px solid #dddddd;
-
 }
 .popover {
 	display: none;
@@ -68,7 +67,7 @@ Locations
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 	padding-left: 35px;
-	padding-top: 20px
+	padding-top: 20px;
 }
 .locations .popover ul {
 	list-style-type: none;
